@@ -28,7 +28,7 @@ class Webtoon extends StatelessWidget {
           Hero(
             tag: id,
             child: Container(
-              width: 250,
+              width: 220,
               decoration: BoxDecoration(
                 boxShadow: [
                   BoxShadow(

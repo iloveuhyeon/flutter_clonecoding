@@ -51,7 +51,7 @@ class _DetailScreenState extends State<DetailScreen> {
               Hero(
                 tag: widget.id,
                 child: Container(
-                  width: 250,
+                  width: 220,
                   decoration: BoxDecoration(
                     boxShadow: [
                       BoxShadow(
@@ -84,14 +84,57 @@ class _DetailScreenState extends State<DetailScreen> {
               if (snapshot.hasData) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(
-                      vertical: 0.0, horizontal: 40.0),
-                  child: Text(snapshot.data!.about),
+                    horizontal: 50.0,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        snapshot.data!.about,
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        '${snapshot.data!.genre} / ${snapshot.data!.age}',
+                        style: const TextStyle(
+                          fontSize: 16,
+                        ),
+                      )
+                    ],
+                  ),
                 );
               } else {
                 return const Text("...");
               }
             },
-          )
+          ),
+          FutureBuilder(
+            future: episodes,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      for (var episode in snapshot.data!)
+                        Text(
+                          episode.title,
+                        ),
+                    ],
+                  ),
+                );
+              } else {
+                return Container();
+              }
+            },
+          ),
         ],
       ),
     );

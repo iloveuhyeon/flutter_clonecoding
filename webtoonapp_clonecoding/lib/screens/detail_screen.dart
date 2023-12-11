@@ -42,12 +42,12 @@ class _DetailScreenState extends State<DetailScreen> {
       ),
       body: Column(
         children: [
+          const SizedBox(
+            height: 50,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const SizedBox(
-                height: 50,
-              ),
               Hero(
                 tag: widget.id,
                 child: Container(
@@ -63,22 +63,33 @@ class _DetailScreenState extends State<DetailScreen> {
                     borderRadius: BorderRadius.circular(15),
                   ),
                   clipBehavior: Clip.hardEdge,
-                  child: Image.network(widget.thumb, headers: const {
-                    'User-Agent':
-                        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36',
-                    'Referer': 'https://comic.naver.com',
-                  }),
+                  child: Image.network(
+                    widget.thumb,
+                    headers: const {
+                      'User-Agent':
+                          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36',
+                      'Referer': 'https://comic.naver.com',
+                    },
+                  ),
                 ),
               ),
             ],
+          ),
+          const SizedBox(
+            height: 30,
           ),
           FutureBuilder(
             future: webtoon,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return Text(snapshot.data!.about);
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                      vertical: 0.0, horizontal: 40.0),
+                  child: Text(snapshot.data!.about),
+                );
+              } else {
+                return const Text("...");
               }
-              return const Text("...");
             },
           )
         ],

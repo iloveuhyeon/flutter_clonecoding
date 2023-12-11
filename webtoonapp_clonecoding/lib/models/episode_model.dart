@@ -1,9 +1,9 @@
 class EpisodeModel {
-  final String id, title, rating, data;
+  final String id, title, rating, date;
 
   EpisodeModel.fromJson(Map<String, dynamic> json)
       : id = json['id'],
         title = json['title'],
         rating = json['rating'],
-        data = json['data'];
+        date = json['date'];
 }

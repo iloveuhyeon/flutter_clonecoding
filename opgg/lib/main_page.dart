@@ -28,7 +28,7 @@ class _MainPageState extends State<MainPage> {
                 _displayText = text;
               },
               decoration: const InputDecoration(
-                labelText: '입력하세요',
+                labelText: '플레이어 닉네임',
               ),
             ),
             const SizedBox(height: 20),
@@ -41,6 +41,9 @@ class _MainPageState extends State<MainPage> {
                 width: 80,
                 child: const Text("입력"),
               ),
+            ),
+            const SizedBox(
+              height: 20,
             ),
             Text(
               '입력값: $_displayText',
